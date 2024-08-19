@@ -8,4 +8,9 @@ Docker Django
 `docker build -t portfolio-image .`
 
 # Run
-`docker run --name portfolio  -p 8000:8000 portfolio-image`
+`docker run -p 8000:8000 portfolio-image`
+- If port 8000 is already allocated then use another port, e.g.
+`docker run -p 5000:8000 portfolio-image`
+
+# Run in daemon mode
+`docker run -d -p 5000:8000 portfolio-image`
