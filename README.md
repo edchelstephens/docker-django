@@ -23,3 +23,8 @@ http://ec2-18-169-17-169.eu-west-2.compute.amazonaws.com:8000/
 
 # Default http port 80
 http://ec2-18-169-17-169.eu-west-2.compute.amazonaws.com
+
+
+# Via  ip
+http://18.169.17.169
+
