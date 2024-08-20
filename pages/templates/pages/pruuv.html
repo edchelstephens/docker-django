@@ -1,11 +1,11 @@
+{% load static %}
 <html lang="en">
-
 
 <head>
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=false">
-	<link rel="stylesheet" href="res/css/bootstrap.min.css">
-	<link rel="stylesheet" href="res/css/style.css">
+	<link rel="stylesheet" href="{% static 'pages/css/bootstrap.min.css' %}">
+	<link rel="stylesheet" href="{% static 'pages/css/style.css' %}">
 	<title>Pruuv: Marketing Analytics Tool to Track Performance & Drive Growth</title>
     <link rel="icon" type="image/x-icon" href="./res/images/plogo.svg">
     <meta property="og:title" content="Pruuv: Marketing Analytics Tool to Track Performance & Drive Growth" />
@@ -73,7 +73,7 @@
 	<section class="hero">
 		<div class="hero-top">
 			<div class="overlay" id="referenceElement">
-				<!-- <img src="./res/images/herobg.svg" alt=""> -->
+				
 				<div class="background-light" style="opacity: 0; visibility: hidden;">
 				</div>
 
@@ -169,7 +169,7 @@
 		<div id="application_image" class="row">
 			<div class="col-1"></div>
 			<div class="col-10">
-				<img src="res/images/pruuvlatest.jpg" alt="" class="w-100 dashboard-image">
+				<img src="{% static 'pages/images/pruuvlatest.jpg' %}" alt="" class="w-100 dashboard-image">
 			</div>
 			<div class="col-"></div>
 		</div>
