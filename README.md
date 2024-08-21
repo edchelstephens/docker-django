@@ -15,6 +15,9 @@ Docker Django
 # Run in daemon mode on Port 8000
 `sudo docker run -d -p 8000:8000 portfolio_image`
 
+# Run in daemon mode on port 80
+`sudo docker run -d -p 80:8000 portfolio_image`
+
 # Check on localhost
 `curl http://127.0.0.0:8000`
 
