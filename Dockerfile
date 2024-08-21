@@ -1,7 +1,6 @@
 FROM python:3.12-alpine
 
-RUN apk update
-RUN apk add nano
+RUN apk update && apk add --no-cache nano
 
 ENV PYTHONDONTWRITEBYTECODE 1
 ENV PYTHONUNBUFFERED 1
