@@ -1,26 +1,18 @@
 # docker-django
-Docker Django
+Dockerized Django basic web application 
+- made with ❤️ by @edchelstephens
 
 
-# Commands
+# Using Docker Compose
+## Command
+## Build and run the containers
+`sudo docker-compose up --build`
 
-# Build
-`sudo docker build -t portfolio_image .`
+## Build and run the containers in daemon mode 
+`sudo docker-compose up -d --build`
 
-# Run
-`docker run -p 8000:8000 portfolio_image`
-- If port 8000 is already allocated then use another port, e.g.
-`docker run -p 5000:8000 portfolio_image`
 
-# Run in daemon mode on Port 8000
-`sudo docker run -d -p 8000:8000 portfolio_image`
-
-# Run in daemon mode on port 80
-`sudo docker run -d -p 80:8000 portfolio_image`
-
-# Check on localhost
-`curl http://127.0.0.0:8000`
-
+# Deployment on AWS
 # On http in port 8000
 http://ec2-18-169-17-169.eu-west-2.compute.amazonaws.com:8000/
 
@@ -30,4 +22,28 @@ http://ec2-18-169-17-169.eu-west-2.compute.amazonaws.com
 
 # Via  ip
 http://18.169.17.169
+
+
+# Pre Docker Compose[Old Way of Doing]
+#### Build
+`sudo docker build -t portfolio_image .`
+
+#### Run
+`docker run -p 8000:8000 portfolio_image`
+- If port 8000 is already allocated then use another port, e.g.
+`docker run -p 5000:8000 portfolio_image`
+
+#### Run in daemon mode on Port 8000
+`sudo docker run -d -p 8000:8000 portfolio_image`
+
+#### Run in daemon mode on port 80
+`sudo docker run -d -p 80:8000 portfolio_image`
+
+#### Check on localhost
+`curl http://127.0.0.0:8000`
+
+
+
+
+
 
