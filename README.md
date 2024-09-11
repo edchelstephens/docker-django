@@ -53,3 +53,11 @@ http://18.169.17.169
     `sudo docker-compose -f production.yml up -d`
 
 
+
+
+# Known Errors
+
+1. Failed to load /home/ubuntu/docker-django/.env: open /home/ubuntu/docker-django/.env: no such file or directory
+
+-> Solution: create .env on instance
+-> command: `touch .env`
