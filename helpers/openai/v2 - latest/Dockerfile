@@ -2,8 +2,8 @@
 FROM python:3.12-alpine
 
 # Set environment variables
-ENV PYTHONDONTWRITEBYTECODE=1
-ENV PYTHONUNBUFFERED=1
+ENV PYTHONDONTWRITEBYTECODE 1
+ENV PYTHONUNBUFFERED 1
 
 # Install dependencies
 RUN apk update && apk add --no-cache build-base nano postgresql-dev libffi-dev openssl-dev
@@ -28,4 +28,4 @@ RUN python manage.py collectstatic --noinput
 EXPOSE 8000
 
 # Run the Django application using gunicorn
-CMD ["gunicorn", "--bind", "0.0.0.0:8000", "your_project_name.wsgi:application"]
+CMD ["gunicorn", "--bind", "0.0.0.0:8000", "project.wsgi:application"]

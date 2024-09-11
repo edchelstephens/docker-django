@@ -9,7 +9,7 @@ tls:
   certificatesResolvers:
     myresolver:
       acme:
-        email: your-email@domain.com
+        email: ed@pruuv.com
         storage: /letsencrypt/acme.json
         httpChallenge:
           entryPoint: web

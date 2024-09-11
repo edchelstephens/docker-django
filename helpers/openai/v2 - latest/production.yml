@@ -5,9 +5,9 @@ services:
     build: .
     container_name: django-app
     restart: always
-    env_file: .env  # Include environment variables like DJANGO_SECRET_KEY, DATABASE_URL, etc.
+    env_file: .env  # Environment variables like DJANGO_SECRET_KEY, DATABASE_URL, etc.
     command: >
-      sh -c "python manage.py migrate && gunicorn --bind 0.0.0.0:8000 your_project_name.wsgi:application"
+      sh -c "python manage.py migrate && gunicorn --bind 0.0.0.0:8000 project.wsgi:application"
     volumes:
       - .:/app
     environment:
@@ -38,7 +38,7 @@ services:
       - "--entrypoints.websecure.address=:443"
       - "--certificatesresolvers.myresolver.acme.httpchallenge=true"
       - "--certificatesresolvers.myresolver.acme.httpchallenge.entrypoint=web"
-      - "--certificatesresolvers.myresolver.acme.email=your-email@domain.com"
+      - "--certificatesresolvers.myresolver.acme.email=ed@pruuv.com"
       - "--certificatesresolvers.myresolver.acme.storage=/letsencrypt/acme.json"
     ports:
       - "80:80"
