@@ -27,6 +27,7 @@ DEBUG = True
 
 
 ALLOWED_HOSTS = [
+    "dev.pruuv.com",
     "ec2-18-169-17-169.eu-west-2.compute.amazonaws.com",
     "localhost",
     "127.0.0.1",
