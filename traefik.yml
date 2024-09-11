@@ -4,3 +4,12 @@ http:
       redirectScheme:
         scheme: https
         permanent: true
+
+tls:
+  certificatesResolvers:
+    myresolver:
+      acme:
+        email: ed@pruuv.com
+        storage: /letsencrypt/acme.json
+        httpChallenge:
+          entryPoint: web
