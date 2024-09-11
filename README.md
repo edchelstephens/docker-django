@@ -16,6 +16,13 @@ Dockerized Django basic web application
 
 # ========== Deployment ========== #
 
+# Versions deployed on EC2 Instance
+`docker --version`
+Docker version 24.0.7, build 24.0.7-0ubuntu4.1
+
+`docker-compose --version`
+Docker Compose version v2.10.0
+
 ## DEV Server
 
 1. On ec2 instance with Public IP: 18.169.17.169
