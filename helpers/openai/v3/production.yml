@@ -1,0 +1,46 @@
+version: '3.8'
+
+services:
+  web:
+    build: .
+    container_name: django-app
+    restart: always
+    env_file: .env
+    command: >
+      sh -c "python manage.py migrate && gunicorn --bind 0.0.0.0:8000 project.wsgi:application"
+    volumes:
+      - .:/app
+    expose:
+      - "8000"
+    networks:
+      - webnet
+    labels:
+      - "traefik.enable=true"
+      - "traefik.http.routers.django-app.rule=Host(`dev.pruuv.com`)"
+      - "traefik.http.routers.django-app.entrypoints=websecure"
+      - "traefik.http.routers.django-app.tls.certresolver=myresolver"
+
+  traefik:
+    image: traefik:v2.10
+    container_name: traefik
+    restart: always
+    ports:
+      - "80:80"
+      - "443:443"
+    volumes:
+      - "/var/run/docker.sock:/var/run/docker.sock:ro"
+      - "./letsencrypt:/letsencrypt"
+    networks:
+      - webnet
+    command:
+      - "--entrypoints.web.address=:80"
+      - "--entrypoints.websecure.address=:443"
+      - "--providers.docker=true"
+      - "--certificatesresolvers.myresolver.acme.email=ed@pruuv.com"
+      - "--certificatesresolvers.myresolver.acme.storage=/letsencrypt/acme.json"
+      - "--certificatesresolvers.myresolver.acme.httpchallenge=true"
+      - "--certificatesresolvers.myresolver.acme.httpchallenge.entrypoint=web"
+
+networks:
+  webnet:
+    driver: bridge
