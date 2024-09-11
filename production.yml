@@ -2,12 +2,12 @@ version: "3.8"
 
 services:
   web:
-    image: python:3.12-alpine
+    build: .
     container_name: django-app
     restart: always
     env_file: .env
     command: >
-      sh -c "python manage.py migrate && python manage.py collectstatic --noinput && gunicorn project.wsgi:application --bind 0.0.0.0:8000"
+      sh -c "python manage.py migrate && gunicorn --bind 0.0.0.0:8000 project.wsgi:application"
     volumes:
       - .:/app
     environment:
@@ -28,11 +28,11 @@ services:
       - traefik-network
 
   traefik:
-    image: traefik:v2.5
+    image: traefik:v2.10
     container_name: traefik
     restart: always
     command:
-      - "--api.insecure=true"
+      - "--api.insecure=false"
       - "--providers.docker=true"
       - "--entrypoints.web.address=:80"
       - "--entrypoints.websecure.address=:443"
