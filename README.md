@@ -69,7 +69,7 @@ Docker Compose version v2.10.0
 
 1. Failed to load /home/ubuntu/docker-django/.env: open /home/ubuntu/docker-django/.env: no such file or directory
 
--> Solution: create .env on instance
+# Solution: create .env on instance
 -> command: `touch .env`
 
 
@@ -78,3 +78,21 @@ Docker Compose version v2.10.0
 2. #0 1.155   File "/usr/local/lib/python3.12/site-packages/django/contrib/staticfiles/storage.py", line 39, in path
 #0 1.155     raise ImproperlyConfigured(
 #0 1.155 django.core.exceptions.ImproperlyConfigured: You're using the staticfiles app without having set the STATIC_ROOT setting to a filesystem path.
+
+# Solution: Add STATIC_ROOT in settings.py
+-> STATIC_ROOT = BASE_DIR / "staticfiles" 
+
+
+3. Error response from daemon: driver failed programming external connectivity on endpoint traefik (d53b31405a0fb959c9bb4d10aa146db5ab0c0f64f006921ed0d4550f2a983457): Error starting userland proxy: listen tcp4 0.0.0.0:443: bind: address already in use
+
+# Solution
+Troubleshooting Steps:
+Check What Is Using Port 443
+You can find which process is currently using port 443 by running the following command:
+
+bash
+Copy code
+sudo lsof -i :443
+This will show you the process ID (PID) and the program that is using port 443.
+
+Stop the Conflicting Process
