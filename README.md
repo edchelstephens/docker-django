@@ -13,6 +13,8 @@ Dockerized Django basic web application
 
 
 # Deployment on AWS
+
+## DEV Server
 # On http in port 8000
 http://ec2-18-169-17-169.eu-west-2.compute.amazonaws.com:8000/
 
@@ -44,6 +46,9 @@ http://18.169.17.169
 
 
 
-
+## Production Server
+1. Create .env file in instance
+2. Run the following command:
+    `sudo docker-compose -f production.yml up -d`
 
 
