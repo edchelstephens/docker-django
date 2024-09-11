@@ -9,7 +9,7 @@ Dockerized Django basic web application
     - Standard
     `sudo docker-compose up --build`
     - Daemon Mode
-    `sudo docker-compose up -d --build`
+    `sudo docker-compose up --build -d`
 
 
 
