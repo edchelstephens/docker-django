@@ -48,7 +48,8 @@ http://18.169.17.169
 
 ## Production Server
 1. Create .env file in instance
-2. Run the following command:
+2. Pull latest changes from git
+3. Run the following command:
     `sudo docker-compose -f production.yml up -d`
 
 
