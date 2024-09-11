@@ -1,5 +1,3 @@
-version: "3.8"
-
 services:
   web:
     build: .
@@ -17,9 +15,10 @@ services:
     labels:
       - "traefik.enable=true"
       - "traefik.http.routers.django-app.rule=Host(`dev.pruuv.com`)"
-      - "traefik.http.routers.django-app.entrypoints=websecure"
-      - "traefik.http.routers.django-app.tls.certresolver=myresolver"
+      - "traefik.http.routers.django-app.entrypoints=web"
       - "traefik.http.services.django-app.loadbalancer.server.port=8000"
+      - "traefik.http.routers.django-app.tls.certresolver=myresolver"
+      - "traefik.http.middlewares.redirect-to-https.redirectscheme.scheme=https"
 
   traefik:
     image: traefik:v2.10
@@ -41,8 +40,6 @@ services:
       - "--certificatesresolvers.myresolver.acme.storage=/letsencrypt/acme.json"
       - "--certificatesresolvers.myresolver.acme.httpchallenge=true"
       - "--certificatesresolvers.myresolver.acme.httpchallenge.entrypoint=web"
-      - "--api.insecure=true"
-
 networks:
   webnet:
     driver: bridge
