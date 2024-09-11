@@ -71,3 +71,10 @@ Docker Compose version v2.10.0
 
 -> Solution: create .env on instance
 -> command: `touch .env`
+
+
+
+
+2. #0 1.155   File "/usr/local/lib/python3.12/site-packages/django/contrib/staticfiles/storage.py", line 39, in path
+#0 1.155     raise ImproperlyConfigured(
+#0 1.155 django.core.exceptions.ImproperlyConfigured: You're using the staticfiles app without having set the STATIC_ROOT setting to a filesystem path.
