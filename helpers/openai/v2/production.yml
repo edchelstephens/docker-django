@@ -1,0 +1,54 @@
+version: '3.8'
+
+services:
+  web:
+    build: .
+    container_name: django-app
+    restart: always
+    env_file: .env  # Include environment variables like DJANGO_SECRET_KEY, DATABASE_URL, etc.
+    command: >
+      sh -c "python manage.py migrate && gunicorn --bind 0.0.0.0:8000 your_project_name.wsgi:application"
+    volumes:
+      - .:/app
+    environment:
+      - PYTHONDONTWRITEBYTECODE=1
+      - PYTHONUNBUFFERED=1
+    labels:
+      - "traefik.enable=true"
+      - "traefik.http.routers.django-app.rule=Host(`dev.pruuv.com`)"
+      - "traefik.http.routers.django-app.entrypoints=web"
+      - "traefik.http.routers.django-app.middlewares=https-redirect@file"
+      - "traefik.http.routers.django-app-secure.rule=Host(`dev.pruuv.com`)"
+      - "traefik.http.routers.django-app-secure.entrypoints=websecure"
+      - "traefik.http.routers.django-app-secure.tls=true"
+      - "traefik.http.routers.django-app-secure.tls.certresolver=myresolver"
+    expose:
+      - "8000"
+    networks:
+      - traefik-network
+
+  traefik:
+    image: traefik:v2.10
+    container_name: traefik
+    restart: always
+    command:
+      - "--api.insecure=false"
+      - "--providers.docker=true"
+      - "--entrypoints.web.address=:80"
+      - "--entrypoints.websecure.address=:443"
+      - "--certificatesresolvers.myresolver.acme.httpchallenge=true"
+      - "--certificatesresolvers.myresolver.acme.httpchallenge.entrypoint=web"
+      - "--certificatesresolvers.myresolver.acme.email=your-email@domain.com"
+      - "--certificatesresolvers.myresolver.acme.storage=/letsencrypt/acme.json"
+    ports:
+      - "80:80"
+      - "443:443"
+    volumes:
+      - "/var/run/docker.sock:/var/run/docker.sock"
+      - "./letsencrypt:/letsencrypt"
+    networks:
+      - traefik-network
+
+networks:
+  traefik-network:
+    driver: bridge
